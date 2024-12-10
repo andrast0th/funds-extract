@@ -47,6 +47,8 @@ def fetch_and_save_funds_data(api_url, max_page, pagesize, proxy, outputFile):
 
             # Extract the ITEMS from the response
             items = data.get("FinderV2", {}).get("ITEMS", [])
+            if not items:
+                items = data.get("FinderV1", {}).get("ITEMS", [])
 
             # Add items to the collection if any
             if items:
